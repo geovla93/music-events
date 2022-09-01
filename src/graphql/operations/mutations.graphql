@@ -1,0 +1,17 @@
+mutation CreateEvent($name: String!, $address: String!, $performer: String!, $venue: String!, $date: String!, $time: String!, $description: String!) {
+  createEvent(name: $name, address: $address, performer: $performer, venue: $venue, date: $date, time: $time, description: $description) {
+    ...EventData
+  }
+}
+
+mutation DeleteEvent($slug: String!) {
+  deleteEvent(slug: $slug) {
+    id
+  }
+}
+
+mutation UpdateEvent($updateEventId: String!, $name: String, $address: String, $performer: String, $venue: String, $date: String, $time: String, $description: String, $image: String) {
+  updateEvent(id: $updateEventId, name: $name, address: $address, performer: $performer, venue: $venue, date: $date, time: $time, description: $description, image: $image) {
+    ...EventData
+  }
+}

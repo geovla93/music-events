@@ -1,0 +1,13 @@
+fragment EventData on Event {
+  id
+  name
+  slug
+  venue
+  address
+  performers
+  date
+  time
+  description
+  image
+  userId
+}

@@ -1,0 +1,52 @@
+query GetUserEvents {
+  getUserEvents {
+    ...EventData
+  }
+}
+
+query GetAllEvents {
+  getAllEvents {
+    id
+    slug
+  }
+}
+
+query GetEventById($id: String!) {
+  getEventById(id: $id) {
+    ...EventData
+  }
+}
+
+query GetEventBySlug($slug: String!) {
+  getEventBySlug(slug: $slug) {
+    ...EventData
+  }
+}
+
+query GetEventsByKeyword($keyword: String!) {
+  getEventsByKeyword(keyword: $keyword) {
+    ...EventData
+  }
+}
+
+query GetLimitedEvents($take: Int!) {
+  getLimitedEvents(take: $take) {
+    ...EventData
+  }
+}
+
+query GetPaginatedEvents($take: Int, $page: Int) {
+  getPaginatedEvents(take: $take, page: $page) {
+    events {
+      ...EventData
+    }
+    pagination {
+      total
+      currentPage
+      totalPages
+      perPage
+      from
+      to
+    }
+  }
+}
