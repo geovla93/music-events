@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "yarn generate:graphql && next build",
     "start": "next start",
     "lint": "next lint",
     "generate:nexus": "tsnd -r tsconfig-paths/register -P tsconfig.nexus.json --transpile-only ./src/graphql/schema.ts",
