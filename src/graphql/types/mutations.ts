@@ -1,5 +1,5 @@
 import { AuthenticationError, ForbiddenError } from 'apollo-server-micro';
-import { mutationType, nonNull, stringArg } from 'nexus';
+import { list, mutationType, nonNull, stringArg } from 'nexus';
 
 import cloudinary from '@/lib/cloudinary';
 import { deNullify } from '@/utils/denullify';
@@ -12,7 +12,7 @@ export const Mutation = mutationType({
       args: {
         name: nonNull(stringArg()),
         address: nonNull(stringArg()),
-        performer: nonNull(stringArg()),
+        performers: nonNull(list(nonNull(stringArg()))),
         venue: nonNull(stringArg()),
         date: nonNull(stringArg()),
         time: nonNull(stringArg()),
@@ -40,7 +40,7 @@ export const Mutation = mutationType({
         id: nonNull(stringArg()),
         name: stringArg(),
         address: stringArg(),
-        performer: stringArg(),
+        performers: list(nonNull(stringArg())),
         venue: stringArg(),
         date: stringArg(),
         time: stringArg(),

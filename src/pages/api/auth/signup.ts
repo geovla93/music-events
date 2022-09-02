@@ -1,9 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { ZodError } from 'zod';
+import { hash } from 'argon2';
 
 import { validate } from '@/utils/validate';
 import { signUpSchema } from '@/utils/schemas';
 import prisma from '@/lib/prisma';
-import { ZodError } from 'zod';
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,7 +13,9 @@ export default async function handler(
   if (req.method === 'POST') {
     try {
       const data = await validate(signUpSchema, req.body);
-      const user = await prisma.user.create({ data });
+      const user = await prisma.user.create({
+        data: { ...data, password: await hash(data.password) },
+      });
 
       res
         .status(201)

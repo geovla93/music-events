@@ -6,11 +6,16 @@ import {
   InMemoryCache,
   NormalizedCacheObject,
 } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 
 let apolloClient: ApolloClient<NormalizedCacheObject> | undefined;
 
 export type ResolverContext = {
-  req?: IncomingMessage;
+  req?: IncomingMessage & {
+    cookies: Partial<{
+      [key: string]: string;
+    }>;
+  };
   res?: ServerResponse;
 };
 
@@ -30,13 +35,22 @@ function createIsomorphLink(context: ResolverContext = {}) {
 }
 
 function createApolloClient(context?: ResolverContext) {
+  const auth = setContext(() => ({
+    headers: {
+      Cookie: context?.req?.headers.cookie,
+    },
+  }));
+
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
-    link: new HttpLink({
-      uri: 'http://localhost:3000/api/graphql',
-      credentials: 'same-origin',
-    }),
+    link: auth.concat(
+      new HttpLink({
+        uri: 'http://localhost:3000/api/graphql',
+        credentials: 'same-origin',
+      }),
+    ),
     cache: new InMemoryCache(),
+    credentials: 'same-origin',
   });
 }
 

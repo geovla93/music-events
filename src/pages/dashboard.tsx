@@ -27,12 +27,12 @@ function DashboardPage() {
   }
 
   return (
-    <Layout title="Dashboard">
+    <Layout title="Dashboard" className="pt-10">
       <Container>
         <h1>
-          <span className="ml-2.5 text-xl text-[#777]">Dashboard</span>
+          <span className="text-xl text-[#777]">Dashboard</span>
         </h1>
-        <h3 className="text-2xl text-red-500">My Events</h3>
+        <h3 className="my-2.5 text-2xl text-red-500">My Events</h3>
         <List
           data={data.userEvents}
           keyExtractor={(item) => item.id}
@@ -60,12 +60,13 @@ export async function getServerSideProps({
     };
   }
 
-  const apolloClient = initializeApollo();
+  const apolloClient = initializeApollo(null, { req, res });
   await apolloClient.query({ query: UserEventsDocument });
 
   return {
     props: {
       initialApolloState: apolloClient.cache.extract(),
+      session,
     },
   };
 }

@@ -29,6 +29,8 @@ function SignInPage() {
     });
 
     if (result?.error) {
+      console.log(result.error);
+
       // toast.error(result.error);
       return;
     }

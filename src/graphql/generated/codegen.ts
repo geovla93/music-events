@@ -47,7 +47,7 @@ export type MutationCreateEventArgs = {
   date: Scalars['String'];
   description: Scalars['String'];
   name: Scalars['String'];
-  performer: Scalars['String'];
+  performers: Array<Scalars['String']>;
   time: Scalars['String'];
   venue: Scalars['String'];
 };
@@ -65,7 +65,7 @@ export type MutationUpdateEventArgs = {
   id: Scalars['String'];
   image?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
-  performer?: InputMaybe<Scalars['String']>;
+  performers?: InputMaybe<Array<Scalars['String']>>;
   time?: InputMaybe<Scalars['String']>;
   venue?: InputMaybe<Scalars['String']>;
 };
@@ -139,7 +139,7 @@ export type EventDataFragment = { __typename?: 'Event', id: string, name: string
 export type CreateEventMutationVariables = Exact<{
   name: Scalars['String'];
   address: Scalars['String'];
-  performer: Scalars['String'];
+  performers: Array<Scalars['String']> | Scalars['String'];
   venue: Scalars['String'];
   date: Scalars['String'];
   time: Scalars['String'];
@@ -160,7 +160,7 @@ export type UpdateEventMutationVariables = Exact<{
   updateEventId: Scalars['String'];
   name?: InputMaybe<Scalars['String']>;
   address?: InputMaybe<Scalars['String']>;
-  performer?: InputMaybe<Scalars['String']>;
+  performers?: InputMaybe<Array<Scalars['String']> | Scalars['String']>;
   venue?: InputMaybe<Scalars['String']>;
   date?: InputMaybe<Scalars['String']>;
   time?: InputMaybe<Scalars['String']>;
@@ -233,11 +233,11 @@ export const EventDataFragmentDoc = gql`
 }
     `;
 export const CreateEventDocument = gql`
-    mutation CreateEvent($name: String!, $address: String!, $performer: String!, $venue: String!, $date: String!, $time: String!, $description: String!) {
+    mutation CreateEvent($name: String!, $address: String!, $performers: [String!]!, $venue: String!, $date: String!, $time: String!, $description: String!) {
   createEvent(
     name: $name
     address: $address
-    performer: $performer
+    performers: $performers
     venue: $venue
     date: $date
     time: $time
@@ -264,7 +264,7 @@ export type CreateEventMutationFn = Apollo.MutationFunction<CreateEventMutation,
  *   variables: {
  *      name: // value for 'name'
  *      address: // value for 'address'
- *      performer: // value for 'performer'
+ *      performers: // value for 'performers'
  *      venue: // value for 'venue'
  *      date: // value for 'date'
  *      time: // value for 'time'
@@ -313,12 +313,12 @@ export type DeleteEventMutationHookResult = ReturnType<typeof useDeleteEventMuta
 export type DeleteEventMutationResult = Apollo.MutationResult<DeleteEventMutation>;
 export type DeleteEventMutationOptions = Apollo.BaseMutationOptions<DeleteEventMutation, DeleteEventMutationVariables>;
 export const UpdateEventDocument = gql`
-    mutation UpdateEvent($updateEventId: String!, $name: String, $address: String, $performer: String, $venue: String, $date: String, $time: String, $description: String, $image: String) {
+    mutation UpdateEvent($updateEventId: String!, $name: String, $address: String, $performers: [String!], $venue: String, $date: String, $time: String, $description: String, $image: String) {
   updateEvent(
     id: $updateEventId
     name: $name
     address: $address
-    performer: $performer
+    performers: $performers
     venue: $venue
     date: $date
     time: $time
@@ -347,7 +347,7 @@ export type UpdateEventMutationFn = Apollo.MutationFunction<UpdateEventMutation,
  *      updateEventId: // value for 'updateEventId'
  *      name: // value for 'name'
  *      address: // value for 'address'
- *      performer: // value for 'performer'
+ *      performers: // value for 'performers'
  *      venue: // value for 'venue'
  *      date: // value for 'date'
  *      time: // value for 'time'

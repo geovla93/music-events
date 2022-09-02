@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { XMarkIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
 
-import type { Event } from '@/graphql/generated/codegen';
+import { Event, UserEventsDocument } from '@/graphql/generated/codegen';
 import { useDeleteEventMutation } from '@/graphql/generated/codegen';
 
 type Props = { event: Omit<Event, 'user' | 'createdAt' | 'updatedAt'> };
@@ -15,6 +15,9 @@ function DashboardEvent({ event }: Props) {
     },
     onError(error) {
       // toast.error(error.message);
+    },
+    refetchQueries(result) {
+      return [{ query: UserEventsDocument }, 'UserEvents'];
     },
   });
 

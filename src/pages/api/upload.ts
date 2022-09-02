@@ -1,7 +1,9 @@
 import type { NextApiRequest, NextApiResponse, PageConfig } from 'next';
 import formidable, { File } from 'formidable';
+import { unstable_getServerSession } from 'next-auth';
+
 import { uploadImage } from '@/lib/cloudinary';
-import { withSessionRoute } from '@/lib/iron-session';
+import authOptions from '@/lib/next-auth';
 
 export const config: PageConfig = {
   api: {
@@ -13,8 +15,8 @@ type ProcessedFile = [string, File];
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
-    const user = req.session.user;
-    if (!user) {
+    const session = await unstable_getServerSession(req, res, authOptions);
+    if (!session) {
       res.status(401).json({ message: 'Not authenticated' });
       return;
     }
@@ -62,4 +64,4 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
-export default withSessionRoute(handler);
+export default handler;

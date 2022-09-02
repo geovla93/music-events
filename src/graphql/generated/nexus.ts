@@ -202,7 +202,7 @@ export interface NexusGenArgTypes {
       date: string; // String!
       description: string; // String!
       name: string; // String!
-      performer: string; // String!
+      performers: string[]; // [String!]!
       time: string; // String!
       venue: string; // String!
     }
@@ -216,7 +216,7 @@ export interface NexusGenArgTypes {
       id: string; // String!
       image?: string | null; // String
       name?: string | null; // String
-      performer?: string | null; // String
+      performers?: string[] | null; // [String!]
       time?: string | null; // String
       venue?: string | null; // String
     }

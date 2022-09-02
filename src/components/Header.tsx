@@ -8,6 +8,7 @@ import { signOut, useSession } from 'next-auth/react';
 import Container from './Container';
 import Button from './Button';
 import DropdownMenu from './DropdownMenu';
+import Search from './Search';
 
 function Header() {
   const { data: session } = useSession();
@@ -22,10 +23,12 @@ function Header() {
           Music Events
         </Link>
 
-        <nav className="ml-2 flex items-center space-x-4">
+        <Search />
+
+        <nav className="ml-2 flex items-center space-x-3">
           <Link
             href="/events"
-            className="hidden font-medium transition-colors hover:text-gray-600 md:text-xl lg:inline"
+            className="hidden font-medium transition-colors hover:text-gray-600 lg:inline xl:text-xl"
           >
             Events
           </Link>
@@ -33,13 +36,13 @@ function Header() {
             <>
               <Link
                 href="/events/submit"
-                className="hidden font-medium transition-colors hover:text-gray-600 md:text-xl lg:inline"
+                className="hidden font-medium transition-colors hover:text-gray-600 lg:inline xl:text-xl"
               >
                 Add Event
               </Link>
               <Link
                 href="/dashboard"
-                className="hidden font-medium transition-colors hover:text-gray-600 md:text-xl lg:inline"
+                className="hidden font-medium transition-colors hover:text-gray-600 lg:inline xl:text-xl"
               >
                 Dashboard
               </Link>

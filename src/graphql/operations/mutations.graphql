@@ -1,5 +1,5 @@
-mutation CreateEvent($name: String!, $address: String!, $performer: String!, $venue: String!, $date: String!, $time: String!, $description: String!) {
-  createEvent(name: $name, address: $address, performer: $performer, venue: $venue, date: $date, time: $time, description: $description) {
+mutation CreateEvent($name: String!, $address: String!, $performers: [String!]!, $venue: String!, $date: String!, $time: String!, $description: String!) {
+  createEvent(name: $name, address: $address, performers: $performers, venue: $venue, date: $date, time: $time, description: $description) {
     ...EventData
   }
 }
@@ -10,8 +10,8 @@ mutation DeleteEvent($slug: String!) {
   }
 }
 
-mutation UpdateEvent($updateEventId: String!, $name: String, $address: String, $performer: String, $venue: String, $date: String, $time: String, $description: String, $image: String) {
-  updateEvent(id: $updateEventId, name: $name, address: $address, performer: $performer, venue: $venue, date: $date, time: $time, description: $description, image: $image) {
+mutation UpdateEvent($updateEventId: String!, $name: String, $address: String, $performers: [String!], $venue: String, $date: String, $time: String, $description: String, $image: String) {
+  updateEvent(id: $updateEventId, name: $name, address: $address, performers: $performers, venue: $venue, date: $date, time: $time, description: $description, image: $image) {
     ...EventData
   }
 }

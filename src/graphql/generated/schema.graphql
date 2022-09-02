@@ -22,9 +22,9 @@ type Event {
 }
 
 type Mutation {
-  createEvent(address: String!, date: String!, description: String!, name: String!, performer: String!, time: String!, venue: String!): Event!
+  createEvent(address: String!, date: String!, description: String!, name: String!, performers: [String!]!, time: String!, venue: String!): Event!
   deleteEvent(slug: String!): Event!
-  updateEvent(address: String, date: String, description: String, id: String!, image: String, name: String, performer: String, time: String, venue: String): Event!
+  updateEvent(address: String, date: String, description: String, id: String!, image: String, name: String, performers: [String!], time: String, venue: String): Event!
 }
 
 type Pagination {

@@ -5,21 +5,22 @@ import { Session, unstable_getServerSession } from 'next-auth';
 import authOptions from '@/lib/next-auth';
 import prisma from '@/lib/prisma';
 
-interface NextContext {
+type NextContext = {
   req: NextApiRequest;
   res: NextApiResponse;
-}
+};
 
-export interface Context extends NextContext {
+export type Context = NextContext & {
   prisma: PrismaClient;
   session: Session | null;
-}
+};
 
 export async function buildContext({
   req,
   res,
 }: NextContext): Promise<Context> {
   const session = await unstable_getServerSession(req, res, authOptions);
+  console.log('🚀 ~ file: context.ts ~ line 24 ~ session', session);
 
   return { req, res, prisma, session };
 }
