@@ -5,19 +5,14 @@ import Seo from './Seo';
 import Header from './Header';
 import Footer from './Footer';
 
-interface Props {
+type Props = PropsWithChildren<{
   title: string;
   description?: string;
   className?: string;
-}
+}>;
 
-function Layout({
-  children,
-  className,
-  title,
-  description,
-}: PropsWithChildren<Props>) {
-  const rootClassName = cn(className, 'min-h-[calc(100vh-96px)]');
+function Layout({ children, className, title, description }: Props) {
+  const rootClassName = cn(className, 'bg-gray-100 min-h-[calc(100vh-96px)]');
 
   return (
     <>
