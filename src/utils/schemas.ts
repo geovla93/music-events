@@ -6,3 +6,8 @@ export const signUpSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8),
 });
+
+export const signInSchema = signUpSchema.pick({ email: true, password: true });
+
+export type TSignUp = z.infer<typeof signUpSchema>;
+export type TSignIn = z.infer<typeof signInSchema>;
