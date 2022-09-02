@@ -45,7 +45,7 @@ function createApolloClient(context?: ResolverContext) {
     ssrMode: typeof window === 'undefined',
     link: auth.concat(
       new HttpLink({
-        uri: 'http://localhost:3000/api/graphql',
+        uri: `${process.env.HOST_URL}/api/graphql`,
         credentials: 'same-origin',
       }),
     ),

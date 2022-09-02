@@ -54,7 +54,7 @@ function HomePage() {
 
 export default HomePage;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const apolloClient = initializeApollo();
   await apolloClient.query({
     query: LimitedEventsDocument,

@@ -1,4 +1,4 @@
-import type { GetStaticPropsContext } from 'next';
+import type { GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
 import Image from 'next/future/image';
 import { useRouter } from 'next/router';
@@ -70,24 +70,46 @@ function EventPage() {
 
 export default EventPage;
 
-export async function getStaticPaths() {
-  const apolloClient = initializeApollo();
-  const { data } = await apolloClient.query<EventsQuery>({
-    query: EventsDocument,
-  });
+// export async function getStaticPaths() {
+//   const apolloClient = initializeApollo();
+//   const { data } = await apolloClient.query<EventsQuery>({
+//     query: EventsDocument,
+//   });
 
-  const paths = data.events.map((event) => ({
-    params: { slug: event.slug },
-  }));
+//   const paths = data.events.map((event) => ({
+//     params: { slug: event.slug },
+//   }));
 
-  return {
-    paths,
-    fallback: 'blocking',
-  };
-}
+//   return {
+//     paths,
+//     fallback: 'blocking',
+//   };
+// }
 
-export async function getStaticProps({ params }: GetStaticPropsContext) {
-  const slug = params?.slug;
+// export async function getStaticProps({ params }: GetStaticPropsContext) {
+//   const slug = params?.slug;
+//   if (typeof slug === 'undefined' || Array.isArray(slug)) {
+//     return {
+//       notFound: true,
+//     };
+//   }
+
+//   const apolloClient = initializeApollo();
+//   await apolloClient.query({
+//     query: EventBySlugDocument,
+//     variables: { slug },
+//   });
+
+//   return {
+//     props: {
+//       initialApolloState: apolloClient.cache.extract(),
+//     },
+//     revalidate: 60,
+//   };
+// }
+
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+  const slug = ctx.params?.slug;
   if (typeof slug === 'undefined' || Array.isArray(slug)) {
     return {
       notFound: true,
@@ -104,6 +126,5 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
     props: {
       initialApolloState: apolloClient.cache.extract(),
     },
-    revalidate: 60,
   };
 }
