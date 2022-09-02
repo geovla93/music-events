@@ -1,42 +1,42 @@
-query GetUserEvents {
-  getUserEvents {
+query UserEvents {
+  userEvents {
     ...EventData
   }
 }
 
-query GetAllEvents {
-  getAllEvents {
+query Events {
+  events {
     id
     slug
   }
 }
 
-query GetEventById($id: String!) {
-  getEventById(id: $id) {
+query EventById($id: String!) {
+  eventById(id: $id) {
     ...EventData
   }
 }
 
-query GetEventBySlug($slug: String!) {
-  getEventBySlug(slug: $slug) {
+query EventBySlug($slug: String!) {
+  eventBySlug(slug: $slug) {
     ...EventData
   }
 }
 
-query GetEventsByKeyword($keyword: String!) {
-  getEventsByKeyword(keyword: $keyword) {
+query EventsByKeyword($keyword: String!) {
+  eventsByKeyword(keyword: $keyword) {
     ...EventData
   }
 }
 
-query GetLimitedEvents($take: Int!) {
-  getLimitedEvents(take: $take) {
+query LimitedEvents($take: Int!) {
+  limitedEvents(take: $take) {
     ...EventData
   }
 }
 
-query GetPaginatedEvents($take: Int, $page: Int) {
-  getPaginatedEvents(take: $take, page: $page) {
+query PaginatedEvents($take: Int, $page: Int) {
+  paginatedEvents(take: $take, page: $page) {
     events {
       ...EventData
     }

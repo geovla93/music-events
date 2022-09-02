@@ -122,13 +122,13 @@ export interface NexusGenFieldTypes {
     pagination: NexusGenRootTypes['Pagination']; // Pagination!
   }
   Query: { // field return type
-    getAllEvents: NexusGenRootTypes['Event'][]; // [Event!]!
-    getEventById: NexusGenRootTypes['Event']; // Event!
-    getEventBySlug: NexusGenRootTypes['Event']; // Event!
-    getEventsByKeyword: NexusGenRootTypes['Event'][]; // [Event!]!
-    getLimitedEvents: NexusGenRootTypes['Event'][]; // [Event!]!
-    getPaginatedEvents: NexusGenRootTypes['PaginationEvents']; // PaginationEvents!
-    getUserEvents: NexusGenRootTypes['Event'][]; // [Event!]!
+    eventById: NexusGenRootTypes['Event']; // Event!
+    eventBySlug: NexusGenRootTypes['Event']; // Event!
+    events: NexusGenRootTypes['Event'][]; // [Event!]!
+    eventsByKeyword: NexusGenRootTypes['Event'][]; // [Event!]!
+    limitedEvents: NexusGenRootTypes['Event'][]; // [Event!]!
+    paginatedEvents: NexusGenRootTypes['PaginationEvents']; // PaginationEvents!
+    userEvents: NexusGenRootTypes['Event'][]; // [Event!]!
   }
   User: { // field return type
     createdAt: NexusGenScalars['Date']; // Date!
@@ -176,13 +176,13 @@ export interface NexusGenFieldTypeNames {
     pagination: 'Pagination'
   }
   Query: { // field return type name
-    getAllEvents: 'Event'
-    getEventById: 'Event'
-    getEventBySlug: 'Event'
-    getEventsByKeyword: 'Event'
-    getLimitedEvents: 'Event'
-    getPaginatedEvents: 'PaginationEvents'
-    getUserEvents: 'Event'
+    eventById: 'Event'
+    eventBySlug: 'Event'
+    events: 'Event'
+    eventsByKeyword: 'Event'
+    limitedEvents: 'Event'
+    paginatedEvents: 'PaginationEvents'
+    userEvents: 'Event'
   }
   User: { // field return type name
     createdAt: 'Date'
@@ -222,19 +222,19 @@ export interface NexusGenArgTypes {
     }
   }
   Query: {
-    getEventById: { // args
+    eventById: { // args
       id: string; // String!
     }
-    getEventBySlug: { // args
+    eventBySlug: { // args
       slug: string; // String!
     }
-    getEventsByKeyword: { // args
+    eventsByKeyword: { // args
       keyword: string; // String!
     }
-    getLimitedEvents: { // args
+    limitedEvents: { // args
       take: number; // Int!
     }
-    getPaginatedEvents: { // args
+    paginatedEvents: { // args
       page: number | null; // Int
       take: number | null; // Int
     }

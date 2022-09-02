@@ -1,25 +1,22 @@
+import Layout from '@/components/Layout';
 import { initializeApollo } from '@/graphql/client';
 import {
-  GetLimitedEventsDocument,
-  useGetLimitedEventsQuery,
+  LimitedEventsDocument,
+  useLimitedEventsQuery,
 } from '@/graphql/generated/codegen';
 
 function HomePage() {
-  const { data } = useGetLimitedEventsQuery({ variables: { take: 3 } });
-
-  if (!data) {
-    return <div>Loading...</div>;
-  }
+  const { data } = useLimitedEventsQuery({ variables: { take: 3 } });
 
   return (
-    <div className="bg-gray-100">
+    <Layout title="Home" className="bg-gray-100">
       <h1>Hello world</h1>
       <div>
-        {data.getLimitedEvents.map((event) => (
+        {data?.limitedEvents.map((event) => (
           <div key={event.id}>{event.name}</div>
         ))}
       </div>
-    </div>
+    </Layout>
   );
 }
 
@@ -28,7 +25,7 @@ export default HomePage;
 export async function getStaticProps() {
   const apolloClient = initializeApollo();
   await apolloClient.query({
-    query: GetLimitedEventsDocument,
+    query: LimitedEventsDocument,
     variables: { take: 3 },
   });
 

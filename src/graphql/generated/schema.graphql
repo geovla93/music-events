@@ -42,13 +42,13 @@ type PaginationEvents {
 }
 
 type Query {
-  getAllEvents: [Event!]!
-  getEventById(id: String!): Event!
-  getEventBySlug(slug: String!): Event!
-  getEventsByKeyword(keyword: String!): [Event!]!
-  getLimitedEvents(take: Int!): [Event!]!
-  getPaginatedEvents(page: Int = 1, take: Int = 5): PaginationEvents!
-  getUserEvents: [Event!]!
+  eventById(id: String!): Event!
+  eventBySlug(slug: String!): Event!
+  events: [Event!]!
+  eventsByKeyword(keyword: String!): [Event!]!
+  limitedEvents(take: Int!): [Event!]!
+  paginatedEvents(page: Int = 1, take: Int = 5): PaginationEvents!
+  userEvents: [Event!]!
 }
 
 type User {

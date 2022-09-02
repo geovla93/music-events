@@ -3,7 +3,7 @@ import { intArg, nonNull, queryType, stringArg } from 'nexus';
 
 export const Query = queryType({
   definition(t) {
-    t.nonNull.list.nonNull.field('getUserEvents', {
+    t.nonNull.list.nonNull.field('userEvents', {
       type: 'Event',
       async resolve(_parent, _args, ctx) {
         if (!ctx.session) {
@@ -17,7 +17,7 @@ export const Query = queryType({
       },
     });
 
-    t.nonNull.field('getEventBySlug', {
+    t.nonNull.field('eventBySlug', {
       type: 'Event',
       args: { slug: nonNull(stringArg()) },
       async resolve(_parent, args, ctx) {
@@ -27,7 +27,7 @@ export const Query = queryType({
       },
     });
 
-    t.nonNull.field('getEventById', {
+    t.nonNull.field('eventById', {
       type: 'Event',
       args: { id: nonNull(stringArg()) },
       async resolve(_parent, args, ctx) {
@@ -35,7 +35,7 @@ export const Query = queryType({
       },
     });
 
-    t.nonNull.list.nonNull.field('getLimitedEvents', {
+    t.nonNull.list.nonNull.field('limitedEvents', {
       type: 'Event',
       args: {
         take: nonNull(intArg()),
@@ -48,7 +48,7 @@ export const Query = queryType({
       },
     });
 
-    t.nonNull.list.nonNull.field('getEventsByKeyword', {
+    t.nonNull.list.nonNull.field('eventsByKeyword', {
       type: 'Event',
       args: { keyword: nonNull(stringArg()) },
       async resolve(_parent, args, ctx) {
@@ -69,7 +69,7 @@ export const Query = queryType({
       },
     });
 
-    t.nonNull.field('getPaginatedEvents', {
+    t.nonNull.field('paginatedEvents', {
       type: 'PaginationEvents',
       args: {
         take: intArg({ default: 5 }),
@@ -102,7 +102,7 @@ export const Query = queryType({
       },
     });
 
-    t.nonNull.list.nonNull.field('getAllEvents', {
+    t.nonNull.list.nonNull.field('events', {
       type: 'Event',
       async resolve(_parent, _args, ctx) {
         return ctx.prisma.event.findMany();
