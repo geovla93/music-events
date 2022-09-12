@@ -1,27 +1,47 @@
-# Next.js + Tailwind CSS Example
+# Music Events
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+Music Events is a web app where a user can search and find music events. If authenticated a user can also create new events, update and delete his own created events but not others'. Visit [here](https://music-events-six.vercel.app).
 
-## Deploy your own
+## Tech Stack Used
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+- Next.js
+- TailwindCSS
+- GraphQL
+- Prisma
+- Typescript
+- Next-Auth
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+## Description
 
-## How to use
+Music Events is a fully functional website built with Next.js, TailwindCSS, Prisma, GraphQL, Typescript and Next-Auth. It has a fully functional authentication system with Email/Password and sessions. It is fully responsive and mobile friendly. It also has a fully functional CRUD system for events. It uses GraphQL for the API and Prisma as the database ORM. It uses both server side rendering and static site generation.
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+### How To Use
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-```
+1. ```bash
+    git clone https://github.com/geovla93/portfolio.git
+    ```
+2. ```bash 
+    npm install
+    #or
+    yarn
+    #or
+    pnpm install
+    ```
+3. ```bash
+    npm run dev
+    #or
+    yarn dev
+    #or
+    pnpm dev
+    ```
 
-```bash
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
+### Environment Variables
 
-```bash
-pnpm create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+In order to run the app, you will have to create a .env file at the root of the project with the following variables:
+- NEXTAUTH_URL (base url of the app, http://localhost:3000 if tested locally)
+- NEXTAUTH_SECRET (secret for next-auth session)
+- DATABASE_URL (ex. postgresql://username:password@localhost:5432/postgres)
+- CLOUDINARY_CLOUD_NAME (cloudinary cloud name)
+- CLOUDINARY_API_KEY (cloudinary api key)
+- CLOUDINARY_API_SECRET (cloudinary api secret)
+- HOST_URL (same as NEXTAUTH_URL)
